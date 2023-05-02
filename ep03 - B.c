@@ -1,9 +1,9 @@
 /*Guilherme Araújo Mendes de Souza - 156437
- * UNIFESP - ICT
- * AED 1
- *
- * beecrowd | 3160
- * Amigos
+  UNIFESP - ICT
+  AED 1
+
+ beecrowd | 3160
+ Amigos
  */
 
 #include <stdio.h>
@@ -16,17 +16,17 @@ struct amigos{
 };
 typedef struct amigos lista;
 
-void Insere (char y[], lista *p){
+void Insere (char y, lista *p){
 	lista *nova;
 	nova = malloc (sizeof (lista));
 	for(int i = 0; i<30; i++){
-		nova->nome[i] = y[i];
+		nova->nome = y;
 	}
 	nova->prox = p->prox;
 	p->prox = nova;
 }
 
-char Remove (char x[], lista *lst) {
+char Remove (char x, lista *lst) {
 	lista *p, *q;
 	char aux[30];
 	p = lst;
@@ -35,7 +35,7 @@ char Remove (char x[], lista *lst) {
 		p = q;
 		q = q->prox;
 	}
-	return x;
+	return q;
 
 	if (q != NULL) {
 		p->prox = q->prox;
@@ -51,20 +51,34 @@ void Imprima (lista *lst) {
 }
 
 int main() {
-	lista nomes, *lst;
-	char nome[30], novo[30], n[4] = {"nao"}, result[30];
+	int i = 0;
+	lista amg[i], *lst;
+	char nome[30], novo, n[4] = {"nao"}, result[30], *pt;
 
 	lst = NULL;
 	lst = (lista *) malloc(sizeof(lista));
 
-    gets(nome);
-	Insere(nome, lst);
-	gets(nome);
-	Insere(nome, lst);
+	fgets(nome, 30, stdin);
+	pt = strtok(nome, " ");
+	while(pt){
+		amg[i].nome = pt;
+		pt = strtok(NULL, " ");
+		i++;
+	}
+	Insere(amg, lst);
 
-	gets(novo);
+	fgets(nome, 30, stdin);
+	pt = strtok(nome, " ");
+    while(pt){
+		amg[i].nome = pt;
+		pt = strtok(NULL, " ");
+		i++;
+	}
+    Insere(amg, lst);
+
+	scanf("%s", novo);
 	if (strcmp(novo, n)){
-	    result[30] == Remove (novo, lst);
+	    result[30] = Remove(novo, lst);
 	    Insere(result, lst);
 	    Imprima(lst);
 	}else{
